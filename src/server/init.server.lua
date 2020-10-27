@@ -2,7 +2,7 @@
 local SCHEM_LAYER = "##Layer"
 local SCHEM_LAYER_END = "##End"
 
-local replicatedStorage = game:GetService("ReplicatedStorage")
+local blocks = game:GetService("ReplicatedStorage").Blocks
 
 
 local function Decode(schematic)
@@ -44,7 +44,7 @@ end
 
 local function PlaceBlock(id, x, y, z, parent)
     if (id > "0") then
-        local block = replicatedStorage.Blocks[1]:Clone() -- Blocks[id]
+        local block = (blocks:FindFirstChild(id) or blocks[1]):Clone()
         block.CFrame = CFrame.new(x*5, y*5, z*5)
         block.Parent = parent
         return block
